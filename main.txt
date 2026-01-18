@@ -4,7 +4,7 @@ SPIKE 3 Python Code for FIRST LEGO League Team 'Laagri JR Unicorns'
 This program controls the 'Millipomm' for the FLL 2025-2026 UNEARTHED season.
 Based on the team 'Aga Miks' program (Github https://github.com/saarmets/agamiks)
 
-Instagram: @laagri_jr_unicorns
+Instagram: @laagri_jr._unicorns
 """
 from hub import motion_sensor, port, button, light_matrix, light, sound
 import motor, runloop, motor_pair, color_sensor, color, time
