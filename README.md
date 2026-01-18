@@ -12,6 +12,8 @@ Features:
 
     Inertia Compensation: Adjusts for the robot's momentum to improve accuracy, especially during short movements.
 
+    Gear Switching Function: Switches our integrated gearbox to the desired gear.
+
     Modular Code Structure: Easy-to-understand and maintainable code with separate functions for driving, turning, and mission execution.
 
 Instagram: @laagrijrunicorns
