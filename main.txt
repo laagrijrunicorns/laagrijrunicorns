@@ -247,7 +247,7 @@ async def magentarun():
     await gear(4) #uks avaneb ja lööb kivid alla,
     await motor.run_for_time(port.A, 550, 450) # Uritab ukse kinni luua
     await gear(1) # Saadab jou astlasse
-    await motor.run_for_degrees(port.A, 260, -250) # Langetab astla
+    await motor.run_for_degrees(port.A, 360, -250) # Langetab astla
     await drive(5, 45, 550) # Soidab astlaga ringi sisse
     await motor.run_for_degrees(port.A, 520, 200) # Tostab plommi ules
     await drive(-4, 45, 550) # Eemaldub kividest
