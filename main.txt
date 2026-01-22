@@ -1,10 +1,12 @@
 """
 SPIKE 3 Python Code for FIRST LEGO League Team 'Laagri JR Unicorns'
 
+
 This program controls the 'Millipomm' for the FLL 2025-2026 UNEARTHED season.
 Based on the team 'Aga Miks' program (Github https://github.com/saarmets/agamiks)
 
-Instagram: @laagri_jr._unicorns
+
+Instagram: @laagri_jr_unicorns
 """
 from hub import motion_sensor, port, button, light_matrix, light, sound
 import motor, runloop, motor_pair, color_sensor, color, time
@@ -26,6 +28,7 @@ def difference(angle_difference):
         angle_difference += 360
     return angle_difference
 
+
 def yaw():
     """
     Retrieve the robot's yaw angle in app-like format.
@@ -43,6 +46,7 @@ def relative():
 async def turn(angle, maxspeed = 1110):
     """
     Proportional-Integral-Derivative (PID) controlled turn function.
+
 
     Turns the robot to a specific yaw angle using a PID controller.
     Includes dynamic acceleration based on error and inertia correction.
@@ -121,7 +125,7 @@ async def gear(gear):
 
 async def bluerun():
     motion_sensor.reset_yaw(0)
-    await gear(1) #Paneb ïge käigu sisse
+    await gear(1) #Paneb ïge käigu sisse#
     await drive(43, 0, 1110) # Soidab laada juurde
     await turn(-135, 900) # Keerab laada poole
     await drive(44, -135, 1110) # Soidab laada eest labi
@@ -148,13 +152,13 @@ async def azurerun():
     motion_sensor.reset_yaw(0)
     await gear(4) # Saadab jou lapatsisse
     await motor.run_for_time(port.A, 500, -990) # Pingutab lapatsi ara
-    await turn(25, 900)  # Keerab suuna kasti ette
+    await turn(25, 900)# Keerab suuna kasti ette
     await drive(30, 25, 1110) # Soidab kirde suunas
     await turn(0, 900) # Keerab otseks
     await drive(15 ,0, 1110) # Soidab kasti juurde
     await turn(-90, 900) # Keerab kasti poole
     await drive(14, -90, 1110) # Soidab kasti ette
-    await motor.run_for_time(port.A, 1000, 990) # Vehib lapatsiga paremale 
+    await motor.run_for_time(port.A, 1000, 990) # Vehib lapatsiga paremale
     time.sleep_ms(500)
     await motor.run_for_time(port.A, 1000, -990) # Vehib lapatsiga vasakule
     await drive(-10, -90, 1110) # Soidab kasti eest ara
@@ -163,7 +167,7 @@ async def azurerun():
     await motor.run_for_degrees(port.A, 720, -1100) # Langetab astla
     await turn(-135) # Keerab edela suunas
     await drive(-9, -135, 1110) # Soidab kirde suunas
-    await turn(-45, 900) #  Keerab plaatide poole
+    await turn(-45, 900) #Keerab plaatide poole
     await drive(20, -45, 1110) # Viib astla noori alla
     await motor.run_for_degrees(port.A, 1520, 1100) # Tostab plaadi ules
     await drive(-10, -45, 1110) # Soidab plaadiga ara
@@ -212,13 +216,13 @@ async def greenrun():
     await drive(-30, 0, 1110) # Soidab koju
 
 async def yellowrun():
-   motion_sensor.reset_yaw(0)
-   await gear (4) #tõstab kopa üles
-   await motor.run_for_degrees(port.A, 360, -400)
-   await drive(46, 0, 1110)
-   await drive(-2, 0, 1110)
-   await motor.run_for_degrees(port.A, 360, 350)
-   await drive(-60, 0, 1110)
+motion_sensor.reset_yaw(0)
+await gear (4) #tõstab kopa üles
+await motor.run_for_degrees(port.A, 360, -400) #
+await drive(46, 0, 1110) #sõidab ja lükkab paadi üles
+await drive(-2, 0, 1110) #sõidab veidi tagasi et paadist eemalduda
+await motor.run_for_degrees(port.A, 360, 350) #laseb kopa alla ja haagib hammasratastega liiva tahaa
+await drive(-60, 0, 1110)
 
 async def redrun():
     motion_sensor.reset_yaw(0)
