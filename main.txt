@@ -1,10 +1,8 @@
 """
 SPIKE 3 Python Code for FIRST LEGO League Team 'Laagri JR Unicorns'
 
-
 This program controls the 'Millipomm' for the FLL 2025-2026 UNEARTHED season.
 Based on the team 'Aga Miks' program (Github https://github.com/saarmets/agamiks)
-
 
 Instagram: @laagri_jr_unicorns
 """
@@ -28,7 +26,6 @@ def difference(angle_difference):
         angle_difference += 360
     return angle_difference
 
-
 def yaw():
     """
     Retrieve the robot's yaw angle in app-like format.
@@ -46,7 +43,6 @@ def relative():
 async def turn(angle, maxspeed = 1110):
     """
     Proportional-Integral-Derivative (PID) controlled turn function.
-
 
     Turns the robot to a specific yaw angle using a PID controller.
     Includes dynamic acceleration based on error and inertia correction.
@@ -76,7 +72,7 @@ async def turn(angle, maxspeed = 1110):
 
     motor_pair.stop(motor_pair.PAIR_1, stop = motor.SMART_BRAKE)
     time.sleep_ms(75)
-
+   
 async def drive(cm, angle, maxspeed = 1110, minspeed = 200):
     """
     Proportional-Integral-Derivative (PID) controlled drive function.
@@ -212,15 +208,24 @@ async def greenrun():
     time.sleep_ms(200)
     await motor.run_for_degrees(port.A, 260, 350) # Tostab haamri
     await motor.run_for_time(port.A, 500, -990) # Loob haamriga 3 korda
-    time.sleep_ms(200)
-    await drive(-30, 0, 1110) # Soidab koju
+    await motor.run_for_time(port.A, 100, 990) # Loob haamriga 3 korda
+     time.sleep_ms(200)
+    await drive(-15, 0, 1110) # Sõidab koju
+    await turn(-50, 1110)
+    await drive(20, -50, 1110)
+    await drive(5, -50, -900) # Soidab koju
+    await gear(1) # Saadab jou haamrisse
+    await motor.run_for_degrees(port.A, 260, -50)
+    await drive(-100, -50, -1110) # Soidab koju
 
 async def yellowrun():
     motion_sensor.reset_yaw(0)
     await gear (4) #tõstab kopa üles
     await motor.run_for_degrees(port.A, 360, -400) #
-    await drive(46, 0, 1110) #sõidab ja lükkab paadi üles
-    await drive(-2, 0, 1110) #sõidab veidi tagasi et paadist eemalduda
+    await drive(52, 0, 1100) #sõidab ja lükkab paadi üles
+    await gear (2) #kukutab lippu
+    await motor.run_for_degrees(port.A, 360, 1100)
+    await gear (4) #tõstab kopa üles
     await motor.run_for_degrees(port.A, 360, 350) #laseb kopa alla ja haagib hammasratastega liiva tahaa
     await drive(-60, 0, 1110) #Sõidab koju
 
@@ -326,6 +331,5 @@ async def main():
                 await gear(3)
                 await motor.run_for_degrees(port.A, 180, 1110)
                 await gear(4)
-                await motor.run_for_degrees(port.A, 180, 1110)
-
+                await motor.run_for_degrees(port.A, 180, 1110)    
 runloop.run(main())
