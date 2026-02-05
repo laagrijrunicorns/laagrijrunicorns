@@ -72,7 +72,7 @@ async def turn(angle, maxspeed = 1110):
 
     motor_pair.stop(motor_pair.PAIR_1, stop = motor.SMART_BRAKE)
     time.sleep_ms(75)
-   
+
 async def drive(cm, angle, maxspeed = 1110, minspeed = 200):
     """
     Proportional-Integral-Derivative (PID) controlled drive function.
@@ -167,10 +167,10 @@ async def azurerun():
     await drive(20, -45, 1110) # Viib astla noori alla
     await motor.run_for_degrees(port.A, 1520, 1100) # Tostab plaadi ules
     await drive(-10, -45, 1110) # Soidab plaadiga ara
-    await turn(-93, 900) # Keerab ida suunas
-    await drive(-125, -93, 1110) # Soidab paremale poolele
-    await turn(-30, 900) # Keerab koduala poole
-    await drive(-90, -30, 1110) # Soidab kodualasse
+    await turn(-90, 900) # Keerab ida suunas
+    await drive(-20, -93, 1110) # Soidab paremale poolele
+    await gear(3)
+    await motor.run_for_time(port.A, 2500, 990) # Vehib lapatsiga vasakule
 
 async def blackrun():
     motion_sensor.reset_yaw(0)
@@ -209,7 +209,7 @@ async def greenrun():
     await motor.run_for_degrees(port.A, 260, 350) # Tostab haamri
     await motor.run_for_time(port.A, 500, -990) # Loob haamriga 3 korda
     await motor.run_for_time(port.A, 100, 990) # Loob haamriga 3 korda
-     time.sleep_ms(200)
+    time.sleep_ms(200)
     await drive(-15, 0, 1110) # Sõidab koju
     await turn(-50, 1110)
     await drive(20, -50, 1110)
@@ -331,5 +331,5 @@ async def main():
                 await gear(3)
                 await motor.run_for_degrees(port.A, 180, 1110)
                 await gear(4)
-                await motor.run_for_degrees(port.A, 180, 1110)    
+                await motor.run_for_degrees(port.A, 180, 1110)
 runloop.run(main())
