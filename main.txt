@@ -188,6 +188,9 @@ async def azurerun():
     await gear(3) #saadab kopale jou
     await motor.run_for_time(port.A, 1500, 700) # Vehib kopaga üles
     await motor.run_for_time(port.A, 750, -890) # Vehib kopaga alla
+    await drive(-90 -90, 1110)
+    await turn(-30, 900)
+    await drive(-70, -30, 1110)
 
 async def blackrun():
     motion_sensor.reset_yaw(0)
