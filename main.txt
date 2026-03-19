@@ -123,41 +123,38 @@ async def bluerun():
     motion_sensor.reset_yaw(0)
     light_matrix.write(str(hub.temperature()))
     await gear(1) #Paneb ïge käigu sisse#
-    await motor.run_for_degrees(port.A, 100, 1110)
+    await motor.run_for_degrees(port.A, 300, 1110)
     await drive(10, 0, 1110)
     await turn(-30, 900)
     light_matrix.write("AgaMiksiUnicornsiMasin3.0,", 100, 200)
-    await drive(31, -30, 1110)
+    await drive(29.5, -30, 1110)
     await turn(-135, 900)
-    await drive(38, -135, 1110)
+    await drive(35, -135, 1110)
     await turn(-90, 900)
-    await drive(10, -90, 1110)
+    await drive(9, -90, 1110)
     await turn(0, 900)
     light_matrix.write("LaagriJrUnicorns", 100, 300)
     await motor.run_for_time(port.A, 800, -700)
-    time.sleep_ms(800)
-    await drive(9, 0, 1110)
-    await motor.run_for_time(port.A, 100, -1110)
     time.sleep_ms(100)
-    await drive(-7.5, 0, 1110)
+    await drive(7.5, 0, 1110)
+    await motor.run_for_time(port.A, 400, -700)
+    time.sleep_ms(400)
+    await drive(-7, 0, 1110)
     await turn(-55, 900)
     light_matrix.show_image(2)
-    await motor.run_for_degrees(port.A, 560, 1110)
-    await drive(39, -55, 1110)
-    await gear(4)
-    time.sleep_ms(20)
-    await drive(0, -55, 1110)
-    await motor.run_for_time(port.A, 500, 1110)
-    time.sleep_ms(500)
-    await drive(-17.5, -55, 1110)
+    await motor.run_for_degrees(port.A, 500, 1110)
+    await drive(32, -55, 1110)
+    await drive(-9, -55, 1110)
     await turn(0, 900)
-    await drive(-13, 0, 1110)
+    await drive(-14, 0, 1110)
     await gear(2)
     light_matrix.write("?")
     await turn(-8, 1110)
-    await motor.run_for_time(port.A, 6800, -800)
-    time.sleep_ms(6800)
-    await drive(2, 0, 1110)
+    await motor.run_for_time(port.A, 3000, -800)
+    time.sleep_ms(100)
+    await drive(5, 0, 1110)
+    await turn(95, 1110)
+    await drive(90, 100, 1110, 1110)
     light_matrix.show_image(2)
 
 async def azurerun():
@@ -178,22 +175,23 @@ async def azurerun():
     await gear(1) # Saadab jou astlasse
     await motor.run_for_degrees(port.A, 720, -1100) # Langetab astla
     await turn(-135) # Keerab edela suunas
+    
     await drive(-9, -135, 1110) # Soidab kirde suunas
     await turn(-45, 900) #Keerab plaatide poole
     await drive(20, -45, 1110) # Viib astla noori alla
     await motor.run_for_degrees(port.A, 1220, 1100) # Tostab plaadi ules
     await drive(-10, -45, 1110) # Soidab plaadiga ara
-    await turn(-85, 900) # Keerab ida suunas
-    await drive(-18, -93, 1110) # Soidab paremale poolele
+    await turn(-90, 900) # Keerab ida suunas
+    await drive(-18, -90, 1110) # Soidab paremale poolele
     await gear(3) #saadab kopale jou
     await motor.run_for_time(port.A, 1500, 550) # Vehib kopaga üles
     time.sleep_ms(100)
     await motor.run_for_time(port.A, 750, -890) # Vehib kopaga alla
-    await drive(-105, -90, 1110)
+    await drive(-85, -90, 1110, 1110)
     await turn(-30, 900)
-    await drive(-100, -30, 1110)
+    await drive(-70, -30, 1110, 1110)
 
-   
+
 async def blackrun():
     motion_sensor.reset_yaw(0)
     await gear(4)
@@ -281,26 +279,17 @@ async def magentarun():
     await drive(5, 45, 550) # Soidab astlaga ringi sisse
     await motor.run_for_degrees(port.A, 520, 200) # Tostab plommi ules
     await drive(-4, 45, 550) # Eemaldub kividest
-    await turn(-90, 900) # Keerab laane suunas
-    await drive(-37, -90, 1110) # Lukkab kivid kodualasse
+    await turn(90, 900) # Keerab ida suunas
+    await drive(-2.5, 90, 1110) # sõidab laua poole
     await gear(4) # Saadab jou ukse sisse
     await motor.run_for_time(port.A, 500, -550) # Lukkab ukse kinni
-    await drive(36, -90, 1110) # Soidab kodualast välja
+#    await drive(-0, -90, 1110) # Soidab kodualast välja
     await turn(0, 900) # Keerab laua poole
     await drive(3.5, 0, 1110) # Soidab laua juurde
     await motor.run_for_time(port.A, 1700, 500) # Lukkab laua oiget pidi
     await drive(-3, 0, 1110) # Soidab laua juurest ara
-    await motor.run_for_time(port.A, 500, -600) # Lukkab ukse kinni
-    await gear(1) # Saadab jou astlasse
-    await turn(-70, 900) # Keerab loode suunas
-    await drive(28, -70, 1110) # Soidab kaevu juurde
-    await turn(-150, 900) # Keerab kaevu poole
-    await drive(13.5, -150, 1110) # Soidab kaevu ette
-    await motor.run_for_degrees(port.A, 260, -100) # Langetab astla plommiga
-    await drive(-18, -135, 1110) # Soidab kaevu juurest ara
-    await motor.run_for_degrees(port.A, 300, 200) # Tostab astla ules
-    await turn(-40, 900) # Keerab koduala poole
-    await drive(-90, -40, 1110) # Soidab kodualasse
+    await turn(-10)
+    await drive(-65, -10, 1110, 1110)
 
 def is_pressed(): # returns True, when the right or left button is pressed
     return button.pressed(button.LEFT) or button.pressed(button.RIGHT)
