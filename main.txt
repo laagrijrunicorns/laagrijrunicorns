@@ -123,38 +123,42 @@ async def bluerun():
     motion_sensor.reset_yaw(0)
     light_matrix.write(str(hub.temperature()))
     await gear(1) #Paneb ïge käigu sisse#
-    await motor.run_for_degrees(port.A, 300, 1110)
+    await motor.run_for_degrees(port.A, 100, 1110)
     await drive(10, 0, 1110)
     await turn(-30, 900)
     light_matrix.write("AgaMiksiUnicornsiMasin3.0,", 100, 200)
-    await drive(29.5, -30, 1110)
+    await drive(31, -30, 1110)
     await turn(-135, 900)
-    await drive(35, -135, 1110)
+    await drive(38, -135, 1110)
     await turn(-90, 900)
-    await drive(9, -90, 1110)
+    await drive(10, -90, 1110)
     await turn(0, 900)
     light_matrix.write("LaagriJrUnicorns", 100, 300)
     await motor.run_for_time(port.A, 800, -700)
+    time.sleep_ms(800)
+    await drive(9, 0, 1110)
+    await motor.run_for_time(port.A, 100, -1110)
     time.sleep_ms(100)
-    await drive(7.5, 0, 1110)
-    await motor.run_for_time(port.A, 400, -700)
-    time.sleep_ms(400)
-    await drive(-7, 0, 1110)
+    await drive(-7.5, 0, 1110)
     await turn(-55, 900)
     light_matrix.show_image(2)
-    await motor.run_for_degrees(port.A, 500, 1110)
-    await drive(32, -55, 1110)
-    await drive(-9, -55, 1110)
+    await motor.run_for_degrees(port.A, 460, 1110)
+    await gear(4)
+    await drive(39, -55, 1110)
+    time.sleep_ms(20)
+    await drive(0, -55, 1110)
+    await motor.run_for_time(port.A, , 1110)
+    time.sleep_ms(500)
+    await drive(-17.5, -55, 1110)
     await turn(0, 900)
-    await drive(-14, 0, 1110)
+    await drive(-13, 0, 1110)
     await gear(2)
     light_matrix.write("?")
     await turn(-8, 1110)
-    await motor.run_for_time(port.A, 3000, -800)
-    time.sleep_ms(100)
+    await motor.run_for_time(port.A, 2500, -1110)
     await drive(5, 0, 1110)
-    await turn(95, 1110)
-    await drive(90, 100, 1110, 1110)
+    await turn(-80, 900)
+    await drive(-110, -80, 1110)
     light_matrix.show_image(2)
 
 async def azurerun():
@@ -175,7 +179,7 @@ async def azurerun():
     await gear(1) # Saadab jou astlasse
     await motor.run_for_degrees(port.A, 720, -1100) # Langetab astla
     await turn(-135) # Keerab edela suunas
-    
+
     await drive(-9, -135, 1110) # Soidab kirde suunas
     await turn(-45, 900) #Keerab plaatide poole
     await drive(20, -45, 1110) # Viib astla noori alla
