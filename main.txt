@@ -116,12 +116,15 @@ async def drive(cm, angle, maxspeed = 1110, minspeed = 200):
 
 async def gear(gear):
     """Switches the integrated gearbox to the desired gear"""
+    motor.run(port.A, 100)
     motor.run_to_absolute_position(port.D, (gear*90) - 49, 1050) #Moves the motor to the specific orientation, so the LEGO gear switcher part engages the right gear
     await motor.run_to_absolute_position(port.D, (gear*90) - 49, 1050)
-    
+    motor.stop(port.A)
+
 async def bluerun():
     motion_sensor.reset_yaw(0)
     light_matrix.write(str(hub.temperature()))
+    await drive(-2, 0, 1110)
     await gear(1) #Paneb ïge käigu sisse#
     await motor.run_for_degrees(port.A, 300, 1110)
     await drive(10, 0, 1110)
@@ -131,7 +134,7 @@ async def bluerun():
     await turn(-135, 900)
     await drive(35, -135, 1110)
     await turn(-90, 900)
-    await drive(9, -90, 1110)
+    await drive(10, -90, 1110)
     await turn(0, 900)
     light_matrix.write("LaagriJrUnicorns", 100, 300)
     await motor.run_for_time(port.A, 800, -700)
@@ -146,7 +149,7 @@ async def bluerun():
     await drive(32, -55, 1110)
     await drive(-9, -55, 1110)
     await turn(0, 900)
-    await drive(-14, 0, 1110)
+    await drive(-13, 0, 1110)
     await gear(2)
     light_matrix.write("?")
     await turn(-8, 1110)
@@ -156,6 +159,7 @@ async def bluerun():
     await turn(95, 1110)
     await drive(90, 100, 1110, 1110)
     light_matrix.show_image(2)
+
 async def azurerun():
     motion_sensor.reset_yaw(0)
     await gear(4) # Saadab jou lapatsisse
@@ -186,9 +190,9 @@ async def azurerun():
     await motor.run_for_time(port.A, 1500, 550) # Vehib kopaga üles
     time.sleep_ms(100)
     await motor.run_for_time(port.A, 750, -890) # Vehib kopaga alla
-    await drive(-85, -90, 1110, 1110)
+    await drive(-87, -90, 1110, 1110)
     await turn(-30, 900)
-    await drive(-70, -30, 1110, 1110)
+    await drive(-76, -30, 1110, 1110)
 
 
 async def blackrun():
@@ -336,13 +340,12 @@ async def main():
                 motion_sensor.reset_yaw(0)
                 light_matrix.write(str(hub.temperature()))
                 sound.beep(550, 300)
-                await motor.run_for_degrees(port.D, 180, 1100)
                 await gear(1)
-                await motor.run_for_degrees(port.A, 180, 1110)
+                await motor.run_for_degrees(port.A, 180, -1110)
                 await gear(2)
-                await motor.run_for_degrees(port.A, 180, 1110)
+                await motor.run_for_degrees(port.A, 180, -1110)
                 await gear(3)
-                await motor.run_for_degrees(port.A, 180, 1110)
+                await motor.run_for_degrees(port.A, 180, -1110)
                 await gear(4)
-                await motor.run_for_degrees(port.A, 180, 1110)
+                await motor.run_for_degrees(port.A, 180, -1110)
 runloop.run(main())
