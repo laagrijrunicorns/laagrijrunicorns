@@ -1,3 +1,4 @@
+
 """
 SPIKE 3 Python Code for FIRST LEGO League Team 'Laagri JR Unicorns'
 
@@ -116,12 +117,15 @@ async def drive(cm, angle, maxspeed = 1110, minspeed = 200):
 
 async def gear(gear):
     """Switches the integrated gearbox to the desired gear"""
+    motor.run(port.A, 100)
     motor.run_to_absolute_position(port.D, (gear*90) - 49, 1050) #Moves the motor to the specific orientation, so the LEGO gear switcher part engages the right gear
     await motor.run_to_absolute_position(port.D, (gear*90) - 49, 1050)
-    
+    motor.stop(port.A)
+
 async def bluerun():
     motion_sensor.reset_yaw(0)
     light_matrix.write(str(hub.temperature()))
+    await drive(-2, 0, 1110)
     await gear(1) #Paneb ïge käigu sisse#
     await motor.run_for_degrees(port.A, 300, 1110)
     await drive(10, 0, 1110)
@@ -131,7 +135,7 @@ async def bluerun():
     await turn(-135, 900)
     await drive(35, -135, 1110)
     await turn(-90, 900)
-    await drive(9, -90, 1110)
+    await drive(10, -90, 1110)
     await turn(0, 900)
     light_matrix.write("LaagriJrUnicorns", 100, 300)
     await motor.run_for_time(port.A, 800, -700)
@@ -146,7 +150,7 @@ async def bluerun():
     await drive(32, -55, 1110)
     await drive(-9, -55, 1110)
     await turn(0, 900)
-    await drive(-14, 0, 1110)
+    await drive(-13, 0, 1110)
     await gear(2)
     light_matrix.write("?")
     await turn(-8, 1110)
@@ -156,6 +160,7 @@ async def bluerun():
     await turn(95, 1110)
     await drive(90, 100, 1110, 1110)
     light_matrix.show_image(2)
+
 async def azurerun():
     motion_sensor.reset_yaw(0)
     await gear(4) # Saadab jou lapatsisse
@@ -183,12 +188,12 @@ async def azurerun():
     await turn(-90, 900) # Keerab ida suunas
     await drive(-18, -90, 1110) # Soidab paremale poolele
     await gear(3) #saadab kopale jou
-    await motor.run_for_time(port.A, 1500, 550) # Vehib kopaga üles
+    await motor.run_for_time(port.A, 1800, 450) # Vehib kopaga üles
     time.sleep_ms(100)
     await motor.run_for_time(port.A, 750, -890) # Vehib kopaga alla
-    await drive(-85, -90, 1110, 1110)
+    await drive(-87, -90, 1110, 1110)
     await turn(-30, 900)
-    await drive(-70, -30, 1110, 1110)
+    await drive(-76, -30, 1110, 1110)
 
 
 async def blackrun():
@@ -226,19 +231,19 @@ async def greenrun():
     await motor.run_for_time(port.A, 500, -990) # Loob haamriga 2 korda
     time.sleep_ms(100)
     await motor.run_for_degrees(port.A, 260, 350) # Tostab haamri
-    await motor.run_for_time(port.A, 500, -990) # Loob haamriga 3 korda
-    time.sleep_ms(100)
+    await motor.run_for_time(port.A, 550, -990) # Loob haamriga 3 korda
+    time.sleep_ms(150)
     await motor.run_for_degrees(port.A, 400, 600) # Tostab haamri
     await drive(-15, 0, 1110) # Sõidab koju
-    await turn(-50, 1110)
+    await turn(-48, 1110)
     await drive(25, -48, 1110)
     await motor.run_for_degrees(port.A, 300, -350)
-    await drive(5, -50, 900)
+    await drive(7, -48, 900)
     await motor.run_for_degrees(port.A, 260, 350)
-    await drive(-7, -50, 1110) # Soidab koju
-    await drive(2, -50, 500) # Soidab koju
-    await motor.run_for_degrees(port.A, 300, -440)
-    await drive(-70, -50, 1110) # Soidab koju
+    await drive(-9, -50, 1110) # Soidab koju
+    await drive(4, -48, 1110)
+    await motor.run_for_degrees(port.A, 150, -440)
+    await drive(-70, -48, 1110) # Soidab koju
 
 async def yellowrun():
     motion_sensor.reset_yaw(0)
@@ -265,30 +270,34 @@ async def whiterun():
 async def magentarun():
     motion_sensor.reset_yaw(0) #
     await gear(1) #tõstab kopa üles
-    await motor.run_for_degrees(port.A, 360, 350)
+    await motor.run_for_degrees(port.A, 360, 700)
     await drive(25, 0, 1110)#sõidab otse
     await turn(-45, 990) #keerab 45 kraadi vasakule
     await drive(42, -45, 1110) #sõidab veidi edasi
     await turn(45, 990) #keerab kivide poole
-    await drive(14, 45, 760) #sõidab kivide suunas
+    await drive(13, 45, 760) #sõidab kivide suunas
     await gear(4) #uks avaneb ja lööb kivid alla,
-    await motor.run_for_time(port.A, 550, 450) # Uritab ukse kinni luua
+    await drive(1, 45, 1110)
+    await motor.run_for_time(port.A, 550, 700) # Uritab ukse kinni luua
+    await drive(1, 45, 1110)   
     await gear(1) # Saadab jou astlasse
-    await motor.run_for_degrees(port.A, 360, -250) # Langetab astla
-    await drive(5, 45, 550) # Soidab astlaga ringi sisse
-    await motor.run_for_degrees(port.A, 520, 200) # Tostab plommi ules
+    await motor.run_for_degrees(port.A, 360, -700) # Langetab astla
+    await drive(4, 45, 550) # Soidab astlaga ringi sisse
+    await motor.run_for_degrees(port.A, 420, 500) # Tostab plommi ules
     await drive(-4, 45, 550) # Eemaldub kividest
     await turn(90, 900) # Keerab ida suunas
     await drive(-2.5, 90, 1110) # sõidab laua poole
     await gear(4) # Saadab jou ukse sisse
-    await motor.run_for_time(port.A, 500, -550) # Lukkab ukse kinni
+    await motor.run_for_time(port.A, 1500, -750) # Lukkab ukse kinni
 #    await drive(-0, -90, 1110) # Soidab kodualast välja
     await turn(0, 900) # Keerab laua poole
     await drive(3.5, 0, 1110) # Soidab laua juurde
-    await motor.run_for_time(port.A, 1700, 500) # Lukkab laua oiget pidi
-    await drive(-3, 0, 1110) # Soidab laua juurest ara
-    await turn(-10)
-    await drive(-65, -10, 1110, 1110)
+    await motor.run_for_time(port.A, 1700, 700) # Lukkab laua oiget pidi
+    await drive(1, 0, 1110)
+    await turn(-10, 900)
+    await motor.run_for_time(port.A, 1300, 710)
+    await drive(-74, -10, 1110) # Soidab laua juurest ara
+
 
 def is_pressed(): # returns True, when the right or left button is pressed
     return button.pressed(button.LEFT) or button.pressed(button.RIGHT)
@@ -336,13 +345,12 @@ async def main():
                 motion_sensor.reset_yaw(0)
                 light_matrix.write(str(hub.temperature()))
                 sound.beep(550, 300)
-                await motor.run_for_degrees(port.D, 180, 1100)
                 await gear(1)
-                await motor.run_for_degrees(port.A, 180, 1110)
+                await motor.run_for_degrees(port.A, 180, -1110)
                 await gear(2)
-                await motor.run_for_degrees(port.A, 180, 1110)
+                await motor.run_for_degrees(port.A, 180, -1110)
                 await gear(3)
-                await motor.run_for_degrees(port.A, 180, 1110)
+                await motor.run_for_degrees(port.A, 180, -1110)
                 await gear(4)
-                await motor.run_for_degrees(port.A, 180, 1110)
+                await motor.run_for_degrees(port.A, 180, -1110)
 runloop.run(main())
