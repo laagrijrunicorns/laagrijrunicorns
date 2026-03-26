@@ -186,7 +186,7 @@ async def azurerun():
     await motor.run_for_degrees(port.A, 1220, 1100) # Tostab plaadi ules
     await drive(-10, -45, 1110) # Soidab plaadiga ara
     await turn(-90, 900) # Keerab ida suunas
-    await drive(-18, -90, 1110) # Soidab paremale poolele
+    await drive(-19, -90, 1110) # Soidab paremale poolele
     await gear(3) #saadab kopale jou
     await motor.run_for_time(port.A, 1800, 450) # Vehib kopaga üles
     time.sleep_ms(100)
