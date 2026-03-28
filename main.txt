@@ -248,7 +248,7 @@ async def greenrun():
 async def yellowrun():
     motion_sensor.reset_yaw(0)
     await gear (4) #tõstab kopa üles
-    await motor.run_for_degrees(port.A, 400, 700) #
+    await motor.run_for_degrees(port.A, 400, -700) #
     await drive(52, 0, 1100) #sõidab ja lükkab paadi üles
     await gear (2) #kukutab lippu
     await motor.run_for_degrees(port.A, 360, 1100)
