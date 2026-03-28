@@ -140,7 +140,7 @@ async def bluerun():
     light_matrix.write("LaagriJrUnicorns", 100, 300)
     await motor.run_for_time(port.A, 800, -700)
     time.sleep_ms(100)
-    await drive(8, 0, 1110)
+    await drive(9, 0, 1110)
     await motor.run_for_time(port.A, 800, -700)
     motor.run(port.A, -700)
     time.sleep_ms(400)
@@ -149,13 +149,13 @@ async def bluerun():
     await turn(-55, 900)
     light_matrix.show_image(2)
 #    await motor.run_for_degrees(port.A, 500, 1110)
-    await drive(13.5, -55, 1110)
+    await drive(14.5, -55, 1110)
     await turn(0, 900)
-    await drive(-14, 0, 1110)
+    await drive(-15, 0, 1110)
     await gear(2)
     light_matrix.write("?")
-    await turn(-2, 1110)
-    await motor.run_for_degrees(port.A, 3600, -700)
+    await turn(-5, 1110)
+    await motor.run_for_degrees(port.A, 3300, 700)
     await drive(5, 0, 1110)
     await turn(95, 1110)
     await drive(90, 100, 1110, 1110)
@@ -248,7 +248,7 @@ async def greenrun():
 async def yellowrun():
     motion_sensor.reset_yaw(0)
     await gear (4) #tõstab kopa üles
-    await motor.run_for_degrees(port.A, 360, -400) #
+    await motor.run_for_degrees(port.A, 400, 700) #
     await drive(52, 0, 1100) #sõidab ja lükkab paadi üles
     await gear (2) #kukutab lippu
     await motor.run_for_degrees(port.A, 360, 1100)
@@ -278,7 +278,7 @@ async def magentarun():
     await drive(13, 45, 760) #sõidab kivide suunas
     await gear(4) #uks avaneb ja lööb kivid alla,
     await drive(1, 45, 1110)
-    await motor.run_for_time(port.A, 550, 600) # Uritab ukse kinni luua
+    await motor.run_for_time(port.A, 550, 400) # Uritab ukse kinni luua
     await drive(1, 45, 1110)
     await gear(1) # Saadab jou astlasse
     await motor.run_for_degrees(port.A, 360, -700) # Langetab astla
